@@ -15,8 +15,7 @@ import com.nttdata.bootcam.banca.consulta.producto.dto.Producto;
 import com.nttdata.bootcam.banca.consulta.producto.dto.ProductoPost;
 import com.nttdata.bootcam.banca.consulta.producto.repository.ProductoRepository;
 import com.nttdata.bootcam.banca.consulta.producto.repository.dao.ProductoDAO;
-
-
+import com.nttdata.bootcam.banca.consulta.producto.service.ProductoService;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -26,16 +25,20 @@ import reactor.core.publisher.Mono;
 public class ProductResource {
 
 	@Autowired
+	private ProductoService productoService;
+	
+	@Autowired
 	private ProductoRepository productoRepository;
 
+	// 1. start of CRUD
 	@GetMapping
 	public Flux getAllProduct(Producto producto) {
-		return productoRepository.findAll().map(this::fromProductoDaoToProductoDto);
+		return productoService.getProductAll().map(this::fromProductoDaoToProductoDto);
 	}
 
 	@GetMapping("/{id}")
 	public Mono<Producto> findProductById(@PathVariable String id) {
-		return productoRepository.findById(id).map(this::fromProductoDaoToProductoDto);
+		return productoService.findById(id).map(this::fromProductoDaoToProductoDto);
 	}
 
 	@PostMapping

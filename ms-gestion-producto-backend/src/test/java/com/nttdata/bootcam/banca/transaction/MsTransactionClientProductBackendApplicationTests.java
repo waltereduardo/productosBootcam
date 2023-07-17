@@ -1,10 +1,10 @@
-package com.nttdata.bootcam.banca.consulta.producto;
+package com.nttdata.bootcam.banca.transaction;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MsConsultaProductoBackendApplicationTests {
+class MsTransactionClientProductBackendApplicationTests {
 
 	@Test
 	void contextLoads() {

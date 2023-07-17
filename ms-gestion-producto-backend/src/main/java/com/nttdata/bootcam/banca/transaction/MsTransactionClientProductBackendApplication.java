@@ -1,4 +1,4 @@
-package com.nttdata.bootcam.banca.consulta.producto;
+package com.nttdata.bootcam.banca.transaction;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,14 +10,14 @@ import springfox.documentation.oas.annotations.EnableOpenApi;
 @SpringBootApplication
 @EnableOpenApi
 @OpenAPIDefinition(info = @Info(
-        title = "REST  DEFINITION, ms-gestion-product-backend",
+        title = "REST  DEFINITION, ms-transaction-client-product-backend",
         version = "1.0.0",
-        description = "Micro  service product management"
+        description = "Micro  service transaction management"
 ))
-public class MsConsultaProductoBackendApplication {
+public class MsTransactionClientProductBackendApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MsConsultaProductoBackendApplication.class, args);
+		SpringApplication.run(MsTransactionClientProductBackendApplication.class, args);
 	}
 
 }
