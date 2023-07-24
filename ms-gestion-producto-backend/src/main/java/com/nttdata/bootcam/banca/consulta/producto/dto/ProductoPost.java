@@ -7,6 +7,7 @@ public class ProductoPost {
 	
 	
 	private String typeProduct;
-	private String detTypeProduct;
-	private String descDetTypeProduct;
+	private String descTypeProduct;
+	private String dateCreate;
+	private String state;
 }

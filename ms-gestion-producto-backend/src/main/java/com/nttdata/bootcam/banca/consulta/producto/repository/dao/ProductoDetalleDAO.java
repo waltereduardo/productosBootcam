@@ -6,14 +6,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Data;
 
 @Data
-@Document("producto-banco")
-public class ProductoDAO {
-	
+@Document("producto-banco-detalle")
+public class ProductoDetalleDAO {
+
 	@Id
 	private String id;
-	private String typeProduct;
-	private String descTypeProduct;
-	private String dateCreate;
+	private String idTypeProduct;
+	private String descCortaProduct;
+	private String desLargaProducto;
 	private String state;
-	
+	private String cantidad;
+	private String precioUnitario;
 }

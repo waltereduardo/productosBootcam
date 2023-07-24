@@ -34,14 +34,14 @@ public class TestProductoService {
 		ProductoDAO produc1 = new ProductoDAO();
 		produc1.setId("1");
 		produc1.setTypeProduct("1");
-		produc1.setDetTypeProduct("2");
-		produc1.setDescDetTypeProduct("cuenta corriente");
+//		produc1.setDetTypeProduct("2");
+//		produc1.setDescDetTypeProduct("cuenta corriente");
 
 		ProductoDAO product2 = new ProductoDAO();
 		product2.setId("1");
 		product2.setTypeProduct("2");
-		product2.setDetTypeProduct("2");
-		product2.setDescDetTypeProduct("plazo fijo");
+//		product2.setDetTypeProduct("2");
+//		product2.setDescDetTypeProduct("plazo fijo");
 
 		when(productoRepository.findAll()).thenReturn(Flux.just(produc1, product2));
 
@@ -60,8 +60,8 @@ public class TestProductoService {
         ProductoDAO product = new ProductoDAO();
         product.setId("1");
         product.setTypeProduct("2");
-        product.setDetTypeProduct("2");
-        product.setDescDetTypeProduct("plazo fijo");
+//        product.setDetTypeProduct("2");
+//        product.setDescDetTypeProduct("plazo fijo");
 
         when(productoRepository.findById(anyString())).thenReturn(Mono.just(product));
 
