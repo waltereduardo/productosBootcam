@@ -7,6 +7,8 @@ import com.nttdata.bootcam.banca.consulta.producto.contrato.CatalogoProductoRepo
 import com.nttdata.bootcam.banca.consulta.producto.contrato.impl.CatalogoProductoRepositoryImpl;
 import com.nttdata.bootcam.banca.consulta.producto.repository.dao.ProductoDetalleDAO;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import reactor.core.publisher.Flux;
 
 
@@ -28,8 +30,14 @@ public class CatalogoService {
     public Flux<ProductoDetalleDAO> getCatalogo() {
         return catalogo;
     }
-	
-	
+/**
+ * Al mostrar el catalogo de producto, puede fallar.
+ * Envolvemos el metodo con el patron circuit breaker
+ * @author wrodrigr
+ * @return
+ */
+    @CircuitBreaker(name = "accountService", fallbackMethod = "fallbackAccounts")
+    @Retry(name = "accountService", fallbackMethod = "fallbackAccounts")
 	public Flux<ProductoDetalleDAO> findAll() {
 		return catalogoProductoRepository.findAll();
 	}
