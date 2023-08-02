@@ -8,12 +8,12 @@ import lombok.Data;
 @Data
 @Document("producto-banco")
 public class ProductoDAO {
-	
+
 	@Id
 	private String id;
 	private String typeProduct;
 	private String descTypeProduct;
 	private String dateCreate;
 	private String state;
-	
+
 }

@@ -11,5 +11,5 @@ public class ProductoDetallePost {
 	private String state;
 	private String cantidad;
 	private String precioUnitario;
-	
+
 }

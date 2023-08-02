@@ -23,99 +23,37 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 
-
 @Configuration
 public class RouterConfig {
 
 	@Autowired
 	private HandlerProduct handlerProduct;
 
-	@RouterOperations({ 
-		@RouterOperation(path = "/router/product", 
-				produces = {
-							MediaType.APPLICATION_JSON_VALUE }, 
-							method = RequestMethod.GET, 
-							beanClass = HandlerProduct.class, 
-							beanMethod = "getProductAll", 
-							operation = @Operation(
-									operationId = "getProductAll", 
-									responses = {
-												@ApiResponse(
-														responseCode = "200", 
-														description = "successful operation", 
-														content = @Content(
-																schema = @Schema(
-																		implementation = ProductoPost.class)
-																)
-														) 
-												}
-									)
-		),
-        @RouterOperation(
-                path = "/router/product/{input}",
-                produces = {
-                        MediaType.APPLICATION_JSON_VALUE
-                },
-                method = RequestMethod.GET,
-                beanClass = HandlerProduct.class,
-                beanMethod = "findProduct",
-                operation = @Operation(
-                        operationId = "findProduct",
-                        responses = {
-                                @ApiResponse(
-                                        responseCode = "200",
-                                        description = "successful operation",
-                                        content = @Content(schema = @Schema(
-                                                implementation = ProductoPost.class
-                                        ))
-                                ),
-                                @ApiResponse(responseCode = "404", description = "product not found with" +
-                                        " given id")
-                        },
-                        parameters = {
-                                @Parameter(in = ParameterIn.PATH, name = "input")
-                        }
+	@RouterOperations({ @RouterOperation(path = "/router/product", produces = {
+			MediaType.APPLICATION_JSON_VALUE }, method = RequestMethod.GET, beanClass = HandlerProduct.class, beanMethod = "getProductAll", operation = @Operation(operationId = "getProductAll", responses = {
+					@ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = ProductoPost.class))) })),
+			@RouterOperation(path = "/router/product/{input}", produces = {
+					MediaType.APPLICATION_JSON_VALUE }, method = RequestMethod.GET, beanClass = HandlerProduct.class, beanMethod = "findProduct", operation = @Operation(operationId = "findProduct", responses = {
+							@ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = ProductoPost.class))),
+							@ApiResponse(responseCode = "404", description = "product not found with"
+									+ " given id") }, parameters = { @Parameter(in = ParameterIn.PATH, name = "input") }
 
-                )
+			)
 
-        ),
-        @RouterOperation(
-                path = "/router/product",
-                produces = {
-                        MediaType.APPLICATION_JSON_VALUE
-                },
-                method = RequestMethod.POST,
-                beanClass = HandlerProduct.class,
-                beanMethod = "saveProduct",
-                operation = @Operation(
-                        operationId = "saveProduct",
-                        responses = {
-                                @ApiResponse(
-                                        responseCode = "200",
-                                        description = "successful operation",
-                                        content = @Content(schema = @Schema(
-                                                implementation = String.class
-                                        ))
-                                )
-                        },
-                        requestBody = @RequestBody(
-                                content = @Content(schema = @Schema(
-                                        implementation = ProductoPost.class
-                                ))
-                        )
+			),
+			@RouterOperation(path = "/router/product", produces = {
+					MediaType.APPLICATION_JSON_VALUE }, method = RequestMethod.POST, beanClass = HandlerProduct.class, beanMethod = "saveProduct", operation = @Operation(operationId = "saveProduct", responses = {
+							@ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = String.class))) }, requestBody = @RequestBody(content = @Content(schema = @Schema(implementation = ProductoPost.class)))
 
-                )
+			)
 
+			)
 
-        )
-		
-		})
+	})
 	public RouterFunction<ServerResponse> routerFunction() {
-		return RouterFunctions.route()
-				.GET("", handlerProduct::getProductAll)
+		return RouterFunctions.route().GET("", handlerProduct::getProductAll)
 				.GET("/router/product/{input}", handlerProduct::findProductById)
-				.POST("/router/product", handlerProduct::saveProduct)
-				.build();
+				.POST("/router/product", handlerProduct::saveProduct).build();
 	}
 
 }

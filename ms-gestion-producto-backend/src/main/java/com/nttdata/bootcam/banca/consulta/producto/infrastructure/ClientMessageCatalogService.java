@@ -2,10 +2,8 @@ package com.nttdata.bootcam.banca.consulta.producto.infrastructure;
 
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.ConsumerFactory;
-import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.stereotype.Service;
 
 import com.nttdata.bootcam.banca.consulta.producto.dto.event.ClientCatalogEvent;
@@ -37,17 +35,17 @@ public class ClientMessageCatalogService {
 			// Consultar el mensaje en el tópico utilizando el consumidor Kafka
 			Map<String, List<ClientCatalogEvent>> records = new HashMap<>();
 			ConsumerRecords<String, ClientCatalogEvent> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(1000));
-			consumerRecords.forEach(
-					record -> records.computeIfAbsent(record.key(), k -> new ArrayList<>()).add(record.value())
-					
+			consumerRecords
+					.forEach(record -> records.computeIfAbsent(record.key(), k -> new ArrayList<>()).add(record.value())
+
 					);
-			System.out.println("VERIFICANDO EN EL TOPICO: " + messageId);
+			System.out.println(" <<checkIfMessageExistsInTopic>> VERIFICANDO EN EL TOPICO: " + messageId);
 			// Verificar si el mensaje con el UUID dado existe en los registros del tópico
 			boolean messageExists = records.containsKey(messageId);
 
 			// Cerrar el consumidor
 			kafkaConsumer.close();
-			System.out.println("EXISTE EL MENSAJE : " + messageExists);
+			System.out.println("<<checkIfMessageExistsInTopic>> EXISTE EL MENSAJE : " + messageExists);
 			return messageExists;
 		} catch (Exception e) {
 			e.printStackTrace();

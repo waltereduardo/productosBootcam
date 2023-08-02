@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class ProductoDetalle extends ProductoDetallePost{
+public class ProductoDetalle extends ProductoDetallePost {
 
 	@JsonProperty("identificador")
 	private String id;
-	private ProductoDetallePost  productoDetallePost;
+	private ProductoDetallePost productoDetallePost;
 }

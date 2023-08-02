@@ -4,8 +4,7 @@ import lombok.Data;
 
 @Data
 public class ProductoPost {
-	
-	
+
 	private String typeProduct;
 	private String descTypeProduct;
 	private String dateCreate;

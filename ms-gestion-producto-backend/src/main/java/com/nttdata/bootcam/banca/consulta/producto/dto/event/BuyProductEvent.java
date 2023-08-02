@@ -1,7 +1,5 @@
 package com.nttdata.bootcam.banca.consulta.producto.dto.event;
 
-
-
 import lombok.Data;
 
 @Data

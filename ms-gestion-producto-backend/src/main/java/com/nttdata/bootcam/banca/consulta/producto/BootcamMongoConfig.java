@@ -10,22 +10,21 @@ import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRep
 import com.mongodb.reactivestreams.client.MongoClient;
 import com.mongodb.reactivestreams.client.MongoClients;
 
-@Configuration										
+@Configuration
 @EnableReactiveMongoRepositories(basePackages = "com.nttdata.bootcam.banca.consulta.producto.repository", reactiveMongoTemplateRef = "bootcamReactiveMongoTemplate")
-public class BootcamMongoConfig {                
+public class BootcamMongoConfig {
 
-    @Value("${spring.data.mongodb.uri}")
-    private String bootcamMongoUri;
-    
-    @Primary
-    @Bean
-    public MongoClient bootcamMongoClient() {
-        return MongoClients.create(bootcamMongoUri);
-    }
+	@Value("${spring.data.mongodb.uri}")
+	private String bootcamMongoUri;
 
-    @Bean
-    public ReactiveMongoTemplate bootcamReactiveMongoTemplate() {
-        return new ReactiveMongoTemplate(bootcamMongoClient(), "bootcam"); 
-    }
+	@Primary
+	@Bean
+	public MongoClient bootcamMongoClient() {
+		return MongoClients.create(bootcamMongoUri);
+	}
+
+	@Bean
+	public ReactiveMongoTemplate bootcamReactiveMongoTemplate() {
+		return new ReactiveMongoTemplate(bootcamMongoClient(), "bootcam");
+	}
 }
-

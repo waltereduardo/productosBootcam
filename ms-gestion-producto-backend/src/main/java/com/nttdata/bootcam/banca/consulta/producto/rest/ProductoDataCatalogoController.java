@@ -16,9 +16,10 @@ public class ProductoDataCatalogoController {
 
 	@Autowired
 	private CatalogoService catalogoService;
-	
+
 	@GetMapping("/data-catalogo")
 	public Flux<ProductoDetalleDAO> getDataCalogoProducto() {
+
 		return catalogoService.getCatalogo();
 	}
 }

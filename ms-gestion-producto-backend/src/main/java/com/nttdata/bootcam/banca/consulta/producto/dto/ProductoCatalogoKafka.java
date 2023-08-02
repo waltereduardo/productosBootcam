@@ -1,13 +1,9 @@
 package com.nttdata.bootcam.banca.consulta.producto.dto;
 
-import java.io.Serializable;
-
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-//@NoArgsConstructor
-public class ProductoCatalogoKafka{
+public class ProductoCatalogoKafka {
 	/**
 	 * 
 	 */

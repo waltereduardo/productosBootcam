@@ -1,4 +1,4 @@
-package com.nttdata.bootcam.banca.consulta.producto.mensajeria.repository;
+package com.nttdata.bootcam.banca.consulta.producto.repository;
 
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 
@@ -8,4 +8,5 @@ import reactor.core.publisher.Flux;
 
 public interface PedidoCatalogoRepository extends ReactiveMongoRepository<SolicitudCatalogoDAO, String> {
 	Flux<SolicitudCatalogoDAO> findByTypeMensaje(String typeMensaje);
+
 }

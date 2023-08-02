@@ -9,21 +9,20 @@ import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRep
 import com.mongodb.reactivestreams.client.MongoClient;
 import com.mongodb.reactivestreams.client.MongoClients;
 
-@Configuration									 
+@Configuration
 @EnableReactiveMongoRepositories(basePackages = "com.nttdata.bootcam.banca.consulta.producto.mensajeria.repository", reactiveMongoTemplateRef = "mensajeriaReactiveMongoTemplate")
-public class MensajeriaMongoConfig {			
-	
-    @Value("${spring.data.mongodbkafka.uri}") 
-    private String mensajeriaMongoUri;
+public class MensajeriaMongoConfig {
 
-    @Bean
-    public MongoClient mensajeriaMongoClient() {
-        return MongoClients.create(mensajeriaMongoUri);
-    }
+	@Value("${spring.data.mongodbkafka.uri}")
+	private String mensajeriaMongoUri;
 
-    @Bean
-    public ReactiveMongoTemplate mensajeriaReactiveMongoTemplate() {
-        return new ReactiveMongoTemplate(mensajeriaMongoClient(), "mensajeria"); 
-    }
+	@Bean
+	public MongoClient mensajeriaMongoClient() {
+		return MongoClients.create(mensajeriaMongoUri);
+	}
+
+	@Bean
+	public ReactiveMongoTemplate mensajeriaReactiveMongoTemplate() {
+		return new ReactiveMongoTemplate(mensajeriaMongoClient(), "mensajeria");
+	}
 }
-

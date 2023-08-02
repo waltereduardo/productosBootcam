@@ -32,7 +32,8 @@ public class HandlerProduct {
 
 	public Mono<ServerResponse> saveProduct(ServerRequest request) {
 		Mono<ProductoDAO> productMono = request.bodyToMono(ProductoDAO.class);
-		Mono<String> saveResponse = productMono.map(dto -> dto.getId() + ":" + dto.getTypeProduct()+":"+dto.getDescTypeProduct()+":"+dto.getDateCreate());
+		Mono<String> saveResponse = productMono.map(dto -> dto.getId() + ":" + dto.getTypeProduct() + ":"
+				+ dto.getDescTypeProduct() + ":" + dto.getDateCreate());
 		return ServerResponse.ok().body(saveResponse, String.class);
 	}
 }
